@@ -5,52 +5,32 @@ import { FileText } from 'lucide-react';
 const Footer: React.FC = () => {
   return (
     <footer className="bg-white border-t border-gray-100 py-12 px-6 md:px-10 animate-fade-in">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-1">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="md:col-2">
             <div className="flex items-center space-x-2 mb-4">
               <FileText className="h-6 w-6 text-primary" />
-              <span className="text-lg font-semibold">PDF2Word<span className="text-primary">Genius</span></span>
+              <span className="text-lg font-semibold">PDF2Word<span className="text-primary">Converter</span></span>
             </div>
-            <p className="text-gray-600 mb-4 text-sm">
+            <p className="text-gray-600 mb-4 text-sm max-w-1xs">
               The most accurate PDF to Word converter that preserves your formatting.
             </p>
           </div>
           
-          <div>
+          <div className='md:col-2'>
             <h4 className="font-medium text-sm uppercase tracking-wider text-gray-500 mb-4">Product</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">Features</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">Pricing</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">API</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">Integrations</a></li>
+              <li><a href="#features" className="text-gray-600 hover:text-primary text-sm transition-colors">Features</a></li>
+              <li><a href="#pricing" className="text-gray-600 hover:text-primary text-sm transition-colors">Pricing</a></li>
+              <li><a href="#support" className="text-gray-600 hover:text-primary text-sm transition-colors">Support</a></li>
             </ul>
           </div>
           
-          <div>
-            <h4 className="font-medium text-sm uppercase tracking-wider text-gray-500 mb-4">Support</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">Help Center</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">Contact Us</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">Status</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">FAQ</a></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="font-medium text-sm uppercase tracking-wider text-gray-500 mb-4">Legal</h4>
-            <ul className="space-y-3">
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">Cookie Policy</a></li>
-              <li><a href="#" className="text-gray-600 hover:text-primary text-sm transition-colors">GDPR</a></li>
-            </ul>
-          </div>
         </div>
         
         <div className="border-t border-gray-100 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-500 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} PDF2WordGenius. All rights reserved.
+            © {new Date().getFullYear()} All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-gray-500 hover:text-primary transition-colors">
