@@ -80,7 +80,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
   }, []);
   
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto" id='herosection'>
       {selectedFile ? (
         <div className="bg-white border border-gray-200 rounded-xl p-6 animate-scale-in shadow-elevation-1">
           <div className="flex items-center justify-between">
