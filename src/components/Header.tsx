@@ -19,9 +19,9 @@ const Header: React.FC = () => {
         
         <div className="hidden md:flex items-center space-x-8">
           <NavLink href="#" active>Home</NavLink>
-          <NavLink href="#features">Features</NavLink>
-          <NavLink href="#pricing">Pricing</NavLink>
-          <NavLink href="#support">Support</NavLink>
+
+          <a href='#features' className="bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-lg shadow-elevation-1 hover:shadow-elevation-2 transition-all">
+          Why Us?</a>
         </div>
         </div>
         <div className="flex items-center space-x-4">

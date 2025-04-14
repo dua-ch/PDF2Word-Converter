@@ -4,8 +4,6 @@ import Header from '@/components/Header';
 import ConversionArea from '@/components/ConversionArea';
 import FeaturesList from '@/components/FeaturesList';
 import Footer from '@/components/Footer';
-import PricingSection from '@/components/PricingSection';
-import SupportSection from '@/components/SupportSection';
 
 const Index: React.FC = () => {
   return (
@@ -14,7 +12,7 @@ const Index: React.FC = () => {
       
       <main className="flex-grow pt-24">
         {/* Hero Section with Converter */}
-        <section className="py-16 md:py-24 px-6 md:px-10">
+        <section className="py-16 md:py-24 px-6 md:px-10" id='hero'>
           <ConversionArea />
         </section>
         
@@ -30,102 +28,7 @@ const Index: React.FC = () => {
           <FeaturesList />
         </section>
         
-        {/* Pricing Section */}
-        <section id="pricing" className="py-16 md:py-24 px-6 md:px-10 bg-gray-50">
-          <PricingSection />
-        </section>
-        
-        {/* Support Section */}
-        <section id="support" className="py-16 md:py-24 px-6 md:px-10 bg-white">
-          <SupportSection />
-        </section>
-        
-        {/* Testimonials Section */}
-        <section className="py-16 md:py-24 px-6 md:px-10 bg-white">
-          <div className="max-w-7xl mx-auto text-center mb-12 animate-fade-up">
-            <h2 className="text-3xl font-semibold mb-4 text-gray-900">Trusted by Thousands</h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              See what our users say about our PDF to Word converter
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto animate-fade-up">
-            {/* Testimonial 1 */}
-            <div className="bg-white p-6 rounded-xl shadow-elevation-1 border border-gray-100">
-              <div className="flex items-center mb-4">
-                <div className="mr-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                    <span className="text-primary font-medium">JD</span>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900">John Doe</h4>
-                  <p className="text-sm text-gray-500">Marketing Manager</p>
-                </div>
-              </div>
-              <p className="text-gray-600">
-                "This converter saved me hours of reformatting work. The converted document maintained all my tables and images perfectly."
-              </p>
-              <div className="mt-4 flex text-amber-400">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-            </div>
-            
-            {/* Testimonial 2 */}
-            <div className="bg-white p-6 rounded-xl shadow-elevation-1 border border-gray-100">
-              <div className="flex items-center mb-4">
-                <div className="mr-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                    <span className="text-primary font-medium">AS</span>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900">Alex Smith</h4>
-                  <p className="text-sm text-gray-500">Legal Assistant</p>
-                </div>
-              </div>
-              <p className="text-gray-600">
-                "I work with legal documents daily and this tool has been a lifesaver. The conversion quality is outstanding and saves me so much time."
-              </p>
-              <div className="mt-4 flex text-amber-400">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-            </div>
-            
-            {/* Testimonial 3 */}
-            <div className="bg-white p-6 rounded-xl shadow-elevation-1 border border-gray-100">
-              <div className="flex items-center mb-4">
-                <div className="mr-4">
-                  <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
-                    <span className="text-primary font-medium">MJ</span>
-                  </div>
-                </div>
-                <div>
-                  <h4 className="font-medium text-gray-900">Maria Johnson</h4>
-                  <p className="text-sm text-gray-500">Teacher</p>
-                </div>
-              </div>
-              <p className="text-gray-600">
-                "As an educator, I often need to edit PDF resources. This converter makes it incredibly easy to modify materials for my students."
-              </p>
-              <div className="mt-4 flex text-amber-400">
-                {[...Array(5)].map((_, i) => (
-                  <svg key={i} xmlns="http://www.w3.org/2000/svg" className={`h-5 w-5 ${i === 4 ? 'text-gray-300' : ''}`} viewBox="0 0 20 20" fill="currentColor">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+
         
         {/* CTA Section */}
         <section className="py-16 md:py-24 px-6 md:px-10">
@@ -147,9 +50,9 @@ const Index: React.FC = () => {
               Join thousands of satisfied users who trust our tool for perfect PDF to Word conversions.
             </p>
             <div className="relative">
-              <button className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-lg shadow-elevation-1 hover:shadow-elevation-2 transition-all">
+              <a href='#hero' className="bg-primary hover:bg-primary/90 text-white font-medium py-3 px-8 rounded-lg shadow-elevation-1 hover:shadow-elevation-2 transition-all">
                 Start Converting Now
-              </button>
+              </a>
             </div>
           </div>
         </section>

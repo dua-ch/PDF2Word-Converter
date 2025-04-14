@@ -17,14 +17,7 @@ const Footer: React.FC = () => {
             </p>
           </div>
           
-          <div className='md:col-2'>
-            <h4 className="font-medium text-sm uppercase tracking-wider text-gray-500 mb-4">Product</h4>
-            <ul className="space-y-3">
-              <li><a href="#features" className="text-gray-600 hover:text-primary text-sm transition-colors">Features</a></li>
-              <li><a href="#pricing" className="text-gray-600 hover:text-primary text-sm transition-colors">Pricing</a></li>
-              <li><a href="#support" className="text-gray-600 hover:text-primary text-sm transition-colors">Support</a></li>
-            </ul>
-          </div>
+         
           
         </div>
         
