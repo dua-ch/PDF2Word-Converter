@@ -13,11 +13,9 @@ export default function Layout({ children }: LayoutProps) {
           <div className="flex justify-between items-center">
             <div className="flex items-center">
               <i className="ri-file-transfer-line text-primary text-2xl mr-2"></i>
-              <h1 className="text-xl font-medium text-gray-800">PDF2Word Converter</h1>
+              <a href='/' ><h1 className="text-xl font-medium text-gray-800">PDF2Word Converter</h1></a>
             </div>
-            <div>
-              <a href="#" className="text-gray-500 hover:text-gray-700 text-sm">Starts Now!</a>
-            </div>
+           
           </div>
         </div>
       </header>

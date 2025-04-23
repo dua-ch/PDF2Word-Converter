@@ -10,7 +10,7 @@ document.head.appendChild(remixIconsLink);
 
 // Add title
 const titleElement = document.createElement("title");
-titleElement.textContent = "Document Converter";
+titleElement.textContent = "PDF2Word Converter";
 document.head.appendChild(titleElement);
 
 // Add Inter font
