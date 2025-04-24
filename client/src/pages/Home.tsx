@@ -150,7 +150,7 @@ export default function Home() {
   };
   
   return (
-    <Layout>
+    <Layout onReset={handleNewConversion}>
       {/* Show error state if there's an error */}
       {state.errorMessage && (
         <ErrorState 
@@ -194,41 +194,7 @@ export default function Home() {
         />
       )}
 
-      {/* Additional features section */}
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="p-6">
-            <h3 className="text-md font-medium text-gray-900 mb-4 flex items-center">
-              <i className="ri-history-line mr-2 text-primary"></i>
-              Recent Conversions
-            </h3>
-            <p className="text-sm text-gray-500 text-center italic">No recent conversions</p>
-          </div>
-        </div>
-        
-        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-          <div className="p-6">
-            <h3 className="text-md font-medium text-gray-900 mb-4 flex items-center">
-              <i className="ri-tools-line mr-2 text-primary"></i>
-              Additional Tools
-            </h3>
-            <div className="space-y-3">
-              <a href="#" className="flex items-center p-3 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors">
-                <i className="ri-lock-line text-gray-500 mr-2"></i>
-                <span className="text-sm text-gray-700">Password Protect PDF</span>
-              </a>
-              <a href="#" className="flex items-center p-3 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors">
-                <i className="ri-scissors-line text-gray-500 mr-2"></i>
-                <span className="text-sm text-gray-700">Split PDF</span>
-              </a>
-              <a href="#" className="flex items-center p-3 bg-gray-50 rounded-md hover:bg-gray-100 transition-colors">
-                <i className="ri-merge-cells-horizontal text-gray-500 mr-2"></i>
-                <span className="text-sm text-gray-700">Merge PDF Files</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div> */}
+     
     </Layout>
   );
 }
