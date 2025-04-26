@@ -14,11 +14,12 @@ export default function FileUpload({ onFileSelected }: FileUploadProps) {
   const [isUploading, setIsUploading] = useState(false);
   const { toast } = useToast();
 
-  const onDrop = useCallback(async (acceptedFiles: File[]) => {
+  
+const onDrop = useCallback(async (acceptedFiles: File[]) => {
     if (acceptedFiles.length === 0) return;
-    
+  
     const file = acceptedFiles[0];
-    
+  
     // Validate file size (max 10MB)
     if (file.size > 10 * 1024 * 1024) {
       toast({
@@ -28,14 +29,14 @@ export default function FileUpload({ onFileSelected }: FileUploadProps) {
       });
       return;
     }
-    
+  
     // Validate file type
     const validTypes = [
       "application/pdf",
       "application/msword",
       "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
     ];
-    
+  
     if (!validTypes.includes(file.type)) {
       toast({
         title: "Invalid file type",
@@ -44,21 +45,22 @@ export default function FileUpload({ onFileSelected }: FileUploadProps) {
       });
       return;
     }
-    
+  
     try {
       setIsUploading(true);
       const uploadedFile = await uploadFile(file);
       onFileSelected(uploadedFile);
-    } catch (error) {
-      toast({
+      } catch (error) {
+        toast({
         title: "Upload failed",
         description: error instanceof Error ? error.message : "Failed to upload file",
         variant: "destructive",
-      });
+       });
     } finally {
-      setIsUploading(false);
+     setIsUploading(false);
     }
   }, [onFileSelected, toast]);
+  
   
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
@@ -87,6 +89,7 @@ export default function FileUpload({ onFileSelected }: FileUploadProps) {
               isDragActive ? "border-primary bg-blue-50" : "border-dashed border-gray-200"
             }`}
           >
+            <input {...getInputProps()} data-testid="file-input" />
             <input {...getInputProps()} />
             <i className="ri-upload-cloud-2-line text-4xl text-gray-400 mb-2"></i>
             <p className="text-gray-700 font-medium mb-1">
