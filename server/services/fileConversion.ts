@@ -8,7 +8,8 @@ const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
 // Initialize ConvertAPI with API key from environment variables
-const apiSecret = 'secret_yg5ADx8nlrUfrsmk';
+const apiSecret = process.env.API_CONVERT_SECRET;
+
 if (!apiSecret) {
   throw new Error('CONVERTAPI_SECRET environment variable is not set');
 }
