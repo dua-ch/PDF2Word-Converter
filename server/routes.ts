@@ -35,7 +35,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (error instanceof ZodError) {
         return res.status(400).json({ message: "Invalid file data", errors: error.errors });
       }
-      res.status(500).json({ message: "Failed to upload file" });
+      res.status(500).json({ message: "Failed to upload file", error: error.message });
     }
   });
 
@@ -89,15 +89,29 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (!fs.existsSync(filePath)) {
         return res.status(404).json({ message: "File not found" });
       }
+
+      // Get the file MIME type
+      const mimeType = path.extname(filename) === '.pdf' ? 'application/pdf' : 'application/octet-stream';
+      res.setHeader("Content-Type", mimeType);
       
       // Set appropriate headers for the file download
       res.setHeader("Content-Disposition", `attachment; filename="${sanitizedFilename}"`);
       
       // Send the file
-      res.sendFile(filePath);
+      res.sendFile(filePath, (err) => {
+        if (err) {
+          console.error("Error sending file:", err);
+          res.status(500).json({ message: "Failed to send file" });
+        } else {
+          // Cleanup the file after sending it
+          fs.unlink(filePath, (err) => {
+            if (err) console.error("Error deleting file after download:", err);
+          });
+        }
+      });
     } catch (error) {
       console.error("Error downloading file:", error);
-      res.status(500).json({ message: "Failed to download file" });
+      res.status(500).json({ message: "Failed to download file", error: error.message });
     }
   });
 

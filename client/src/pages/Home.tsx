@@ -23,64 +23,68 @@ export default function Home() {
     errorMessage: "",
   });
   
-  // Store cancel function for cleanup
   const [cancelProgress, setCancelProgress] = useState<(() => void) | null>(null);
-  
-  // Clean up progress simulation when component unmounts
+
   useEffect(() => {
     return () => {
       if (cancelProgress) {
-        cancelProgress();
+        cancelProgress(); // Cleanup progress simulation on unmount
       }
     };
   }, [cancelProgress]);
-  
-  // Reset error state
+
   const handleDismissError = () => {
     setState((prev) => ({
       ...prev,
       errorMessage: "",
     }));
   };
-  
-  // Handle file selection from upload component
+
   const handleFileSelected = (file: FileMetadata) => {
     setState((prev) => ({
       ...prev,
       step: "options",
       selectedFile: file,
       errorMessage: "",
+      conversionProgress: 0,  // Reset progress when new file is selected
     }));
-    
-    // Auto-detect conversion type based on file
-    const isPdf = file.mimetype === "application/pdf";
+
+    // Auto-detect conversion type based on file mimetype
+    const isPdf = file.mimetype === "application/pdf"; 
     setState((prev) => ({
       ...prev,
       conversionType: isPdf ? ConversionType.PDF_TO_WORD : ConversionType.WORD_TO_PDF,
     }));
   };
-  
-  // Handle conversion type change
+
   const handleConversionTypeChange = (type: ConversionTypeValue) => {
     setState((prev) => ({
       ...prev,
       conversionType: type,
     }));
   };
-  
-  // Go back to file upload
+
   const handleBackToUpload = () => {
     setState((prev) => ({
       ...prev,
       step: "upload",
       selectedFile: null,
+      conversionProgress: 0,  // Reset progress when going back to upload
     }));
   };
-  
-  // Start the conversion process
+
   const handleStartConversion = async () => {
     if (!state.selectedFile) return;
-    
+
+    // Check if file exceeds size limit (e.g., 10MB)
+    if (state.selectedFile.size > 10 * 1024 * 1024) {
+      setState((prev) => ({
+        ...prev,
+        errorMessage: "File size exceeds 10MB. Please upload a smaller file.",
+      }));
+      return;
+    }
+
     setState((prev) => ({
       ...prev,
       step: "converting",
@@ -88,7 +92,7 @@ export default function Home() {
       conversionProgress: 0,
       errorMessage: "",
     }));
-    
+
     // Start progress simulation
     const cancel = simulateProgress((progress) => {
       setState((prev) => ({
@@ -96,9 +100,9 @@ export default function Home() {
         conversionProgress: progress,
       }));
     });
-    
+
     setCancelProgress(() => cancel);
-    
+
     try {
       // Perform the actual conversion
       const result = await convertFile(state.selectedFile, state.conversionType);
@@ -108,8 +112,7 @@ export default function Home() {
         ...prev,
         conversionProgress: 100,
       }));
-      
-      // Slight delay to show 100% progress before showing results
+
       setTimeout(() => {
         setState((prev) => ({
           ...prev,
@@ -119,22 +122,19 @@ export default function Home() {
           wordCount: result.wordCount,
           characterCount: result.characterCount,
         }));
-      }, 500);
+      }, 500);  // Delay to show 100% progress before moving to results
     } catch (error) {
-      // Handle error
       setState((prev) => ({
         ...prev,
         isConverting: false,
         errorMessage: error instanceof Error ? error.message : "Failed to convert file",
       }));
     } finally {
-      // Clean up progress simulation
-      cancel();
+      cancel();  // Clean up progress simulation
       setCancelProgress(null);
     }
   };
-  
-  // Start a new conversion
+
   const handleNewConversion = () => {
     setState({
       step: "upload",
@@ -148,22 +148,18 @@ export default function Home() {
       errorMessage: "",
     });
   };
-  
+
   return (
     <Layout onReset={handleNewConversion}>
-      {/* Show error state if there's an error */}
       {state.errorMessage && (
-        <ErrorState 
-          errorMessage={state.errorMessage}
-          onDismiss={handleDismissError}
-        />
+        <ErrorState errorMessage={state.errorMessage} onDismiss={handleDismissError} />
       )}
-      
+
       {/* File upload step */}
       {state.step === "upload" && !state.errorMessage && (
         <FileUpload onFileSelected={handleFileSelected} />
       )}
-      
+
       {/* Conversion options step */}
       {state.step === "options" && state.selectedFile && !state.errorMessage && (
         <ConversionOptions
@@ -174,12 +170,12 @@ export default function Home() {
           onBackToUpload={handleBackToUpload}
         />
       )}
-      
+
       {/* Conversion progress step */}
       {state.step === "converting" && state.isConverting && !state.errorMessage && (
         <ConversionProgress progress={state.conversionProgress} />
       )}
-      
+
       {/* Results step */}
       {state.step === "results" && state.convertedFile && !state.errorMessage && (
         <ConversionResults
@@ -193,8 +189,6 @@ export default function Home() {
           onNewConversion={handleNewConversion}
         />
       )}
-
-     
     </Layout>
   );
 }
